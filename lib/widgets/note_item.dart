@@ -7,6 +7,7 @@ class NoteItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
       decoration: BoxDecoration(
         color: const Color(0xffffcc80),
         borderRadius: BorderRadius.circular(16),
@@ -16,22 +17,34 @@ class NoteItem extends StatelessWidget {
         children: [
           ListTile(
             title: const Text(
-              'flutter note',
+              'flutter notddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsddddde',
               style: TextStyle(fontSize: 26, color: Colors.black),
             ),
-            subtitle: Text(
-              'ddddd sdss dsddddd',
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black.withValues(alpha: .4),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 16, bottom: 16),
+              child: Text(
+                'ddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsddddd',
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black.withValues(alpha: .5),
+                ),
               ),
             ),
             trailing: IconButton(
               onPressed: () {},
-              icon: Icon(FontAwesomeIcons.trash, color: Colors.black, size: 30),
+              icon: Icon(FontAwesomeIcons.trash, color: Colors.black, size: 24),
             ),
           ),
-          Text('12/2/2000', style: TextStyle(color: Colors.black)),
+          Padding(
+            padding: const EdgeInsets.only(right: 24),
+            child: Text(
+              '12/2/2000',
+              style: TextStyle(
+                fontSize: 16,
+                color: Colors.black.withValues(alpha: .4),
+              ),
+            ),
+          ),
         ],
       ),
     );
