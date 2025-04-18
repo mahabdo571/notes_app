@@ -17,13 +17,13 @@ class NoteItem extends StatelessWidget {
         children: [
           ListTile(
             title: const Text(
-              'flutter notddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsddddde',
+              'flutter ddde',
               style: TextStyle(fontSize: 26, color: Colors.black),
             ),
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 16, bottom: 16),
               child: Text(
-                'ddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsdddddddddd sdss dsddddd',
+                'ddddd sdss ds sddddddd sdss dsddddd',
                 style: TextStyle(
                   fontSize: 18,
                   color: Colors.black.withValues(alpha: .5),
