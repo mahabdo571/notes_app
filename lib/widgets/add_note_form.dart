@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'colors_list_view.dart';
+
 import '../cubits/add_note_cubit/add_note_cubit.dart';
 import '../models/note_model.dart';
-
+import 'colors_list_view.dart';
 import 'custom_button.dart';
 import 'custom_text_field.dart';
 

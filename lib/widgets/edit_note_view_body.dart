@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../cubits/notes_cubit/notes_cubit.dart';
 import '../models/note_model.dart';
-import 'edit_note_color_list.dart';
-
 import 'custom_app_bar.dart';
 import 'custom_text_field.dart';
+import 'edit_note_color_list.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({super.key, required this.note});
