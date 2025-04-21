@@ -26,7 +26,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         children: [
           SizedBox(height: 50),
           CustomAppBar(
-            title: 'Edit Note',
+            title: 'تعديل ${widget.note.title}',
             icon: Icons.check,
             onClick: () {
               widget.note.title = title ?? widget.note.title;
