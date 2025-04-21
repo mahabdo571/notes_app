@@ -18,60 +18,123 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (ctx) {
-              return EditNoteView(note: note,);
+              return EditNoteView(note: note);
             },
           ),
         );
       },
       child: Container(
-        padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
+        padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
         decoration: BoxDecoration(
           color: Color(note.color),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(20),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ListTile(
-              title: Text(
-                note.title,
-                style: TextStyle(fontSize: 26, color: Colors.black),
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 16, bottom: 16),
-                child: Text(
-                  note.subTitle,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: Colors.black.withValues(alpha: .5),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        note.title,
+                        style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w600,
+                          letterSpacing: 0.2,
+                        ),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                      SizedBox(height: 12),
+                      Text(
+                        note.subTitle,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.black.withOpacity(0.6),
+                          height: 1.4,
+                        ),
+                        maxLines: 4,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
                   ),
                 ),
-              ),
-              trailing: IconButton(
-                onPressed: () async {
-                  await note.delete();
-                  BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                },
-                icon: Icon(
-                  FontAwesomeIcons.trash,
-                  color: Colors.black,
-                  size: 24,
-                ),
-              ),
+                SizedBox(width: 12),
+                _buildActionButton(context, note),
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(right: 24),
-              child: Text(
-                note.date,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black.withValues(alpha: .4),
+            SizedBox(height: 16),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  note.date,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black.withOpacity(0.4),
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
       ),
     );
   }
+}
+
+// Widget function for action button
+Widget _buildActionButton(BuildContext context, NoteModel note) {
+  return Material(
+    type: MaterialType.transparency,
+    child: InkWell(
+      borderRadius: BorderRadius.circular(40),
+      onTap: () => _showDeleteConfirmationDialog(context, note),
+      splashColor: Colors.black.withOpacity(0.1),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(
+          FontAwesomeIcons.trashCan,
+          size: 24,
+          color: Colors.black.withOpacity(0.7),
+        ),
+      ),
+    ),
+  );
+}
+
+void _showDeleteConfirmationDialog(BuildContext context, NoteModel note) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text(
+          "تأكيد الحذف",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        content: Text("هل أنت متأكد أنك تريد حذف هذه الملاحظة؟"),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        actions: [
+          TextButton(
+            child: Text("إلغاء", style: TextStyle(color: Colors.grey)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          TextButton(
+            child: Text("حذف", style: TextStyle(color: Colors.red)),
+            onPressed: () async {
+              Navigator.of(context).pop();
+              await note.delete();
+              BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }
