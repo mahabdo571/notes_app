@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/constants.dart';
+import '../constants.dart';
 
 class ColorItem extends StatelessWidget {
   const ColorItem({super.key, required this.isActive, required this.color});
