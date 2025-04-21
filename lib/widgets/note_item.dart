@@ -18,7 +18,7 @@ class NoteItem extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (ctx) {
-              return EditNoteView();
+              return EditNoteView(note: note,);
             },
           ),
         );
